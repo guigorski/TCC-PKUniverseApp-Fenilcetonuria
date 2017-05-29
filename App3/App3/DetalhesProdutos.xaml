@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App3.DetalhesProdutos"
+             Title="{Binding Nome}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label FontSize="Medium" Text="{Binding Nome}" />
+            <Label  FontSize="Medium" Text="{Binding Quantidade}" />
+            <Label  FontSize="Medium" Text="{Binding Proteinas}" />
+            <Label  FontSize="Medium"  Text="{Binding Calorias}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

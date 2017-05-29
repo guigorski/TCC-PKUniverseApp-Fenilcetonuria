@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App3.ListarProdutos"
+            Title="Listar Produtos"
+             >
+    <StackLayout>
+        <ListView x:Name="listView" 
+              HasUnevenRows="True" 
+              IsGroupingEnabled="True" 
+              GroupDisplayBinding="{Binding Title}" 
+              GroupShortNameBinding="{Binding ShortTitle}"
+              SeparatorColor="#127ac7"
+         
+              ItemSelected="listView_ItemSelected"
+               >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Delete" Clicked="Delete_Clicked" IsDestructive="True"/>
+                        </ViewCell.ContextActions>
+                        <StackLayout Orientation="Horizontal" Padding="5">
+                            <Image Source="{Binding ImageUrl}" WidthRequest="45" HeightRequest="45"/>
+                            <StackLayout HorizontalOptions="StartAndExpand">
+                                <Label Text="{Binding Nome}"/>
+                                <Label Text="{Binding Quantidade}" TextColor="Black" />
+                            </StackLayout>
+                            <Button Text="Adicionar" BackgroundColor="#127ac7" TextColor="White" x:Name="btn" Clicked="btn_Clicked" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+        <Button x:Name="Voltar" Clicked="Voltar_Clicked" Text="Voltar" />
+    </StackLayout>
+</ContentPage>

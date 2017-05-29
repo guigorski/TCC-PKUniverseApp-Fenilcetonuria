@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App3.Dietas"     Title="Acompanhamento Diário">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" Order="Primary" />
+
+
+    </ContentPage.ToolbarItems>
+    <StackLayout Padding="20">
+        <ListView x:Name="listView" 
+              HasUnevenRows="True" 
+              IsGroupingEnabled="True" 
+              GroupDisplayBinding="{Binding Title}" 
+              SeparatorColor="#127ac7"
+         
+              ItemSelected="listView_ItemSelected"
+               >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                        </ViewCell.ContextActions>
+                        <StackLayout Orientation="Horizontal" Padding="5">
+
+                            <StackLayout HorizontalOptions="StartAndExpand">
+                                <Label Text="{Binding Nome}"/>
+                                <Label Text="{Binding Quantidade}" TextColor="Black" />
+                            </StackLayout>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+    </StackLayout>
+</ContentPage>

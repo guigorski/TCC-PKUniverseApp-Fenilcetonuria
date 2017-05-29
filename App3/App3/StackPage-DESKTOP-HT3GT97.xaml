@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+          
+            Padding="0,20,0,0"
+            xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App3.StackPage"
+                 BackgroundColor="#127ac7">
+    <StackLayout Spacing="20" VerticalOptions="Center">
+        <Label Text="Bem vindo ao PKUniverse" TextColor="White" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center"/>
+        <Label Text="O seu apoio para o manejo dietoterápico" TextColor="White" FontSize="18" HorizontalOptions="Center"/>
+       
+        <Button x:Name="Att" Clicked="Atualizar_Clicked" Text="Atualizar Dados" BackgroundColor="#1dabf0"  TextColor="White"/>
+        <Button   Clicked="Button_Clicked" Text="Lista de Produtos" BackgroundColor="#1dabf0" TextColor="White"/>
+        <Button x:Name="MeusItens" Clicked="MeusItens_Clicked" Text="Meus Itens" BackgroundColor="#1dabf0" TextColor="White" />
+        <Button x:Name="MinhasDietas" Clicked="MinhasDietas_Clicked"  Text="Minhas Dietas" BackgroundColor="#1dabf0" TextColor="White" />
+
+    </StackLayout>
+</ContentPage>

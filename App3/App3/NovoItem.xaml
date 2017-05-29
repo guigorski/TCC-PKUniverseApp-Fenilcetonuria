@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App3.NovoItem"
+              Padding="40"
+             Title="Novo Item">
+    <StackLayout>
+
+        <Entry  Keyboard="Text" Placeholder="Nome do Produto" x:Name="NomeProduto"/>
+        <Entry Keyboard="Numeric" Placeholder="Proteinas" x:Name="Proteina"/>
+        <Entry Keyboard="Numeric" Placeholder="Quantidade (g)" x:Name="Quantidade"/>
+        <Entry Keyboard="Numeric" Placeholder="Calorias" x:Name="Calorias"/>
+        <Button Text="Enviar" x:Name="enviar" Clicked="enviar_Clicked"  BackgroundColor="#127ac7" TextColor="White"/>
+        <Button  Text="Voltar" Clicked="Button_Clicked" VerticalOptions="End"/>
+
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App3.ListarProdutos"
+             
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" Order="Primary" />
+
+
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <SearchBar Placeholder="Buscar..." TextChanged="SearchBar_TextChanged" />
+        <ListView x:Name="listView"    
+              SeparatorColor="#127ac7"
+              ItemSelected="listView_ItemSelected"
+               >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Nome}" TextColor="Black"  Detail="{Binding Marca}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Adicionar novo item" VerticalOptions="Center" Clicked="Button_Clicked_2"/>
+        <Button Text="Voltar" VerticalOptions="End" Clicked="Button_Clicked"/>
+    </StackLayout>
+
+</ContentPage>
