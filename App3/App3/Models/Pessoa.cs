@@ -3,22 +3,76 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SQLite.Net.Attributes;
+using SQLite;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace App3
 {
-    public class Pessoa
+    public class Pessoa : INotifyPropertyChanged
     {
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
         [PrimaryKey, AutoIncrement]
         public int id { get; set; }
 
-        public string Nome { get; set; }
+        private string _name;
 
-        public string Peso { get; set; }
+        public string Nome {
 
-        public DateTime Data { get; set; }
+            get { return _name; }
 
-        
+            set { if (_name == value)
+                    return;
+
+                _name = value;
+
+                OnPropertyChanged();
+                        }
+                
+                }
+
+        private void OnPropertyChanged ([CallerMemberName]string propertyName = null)
+        {
+           
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private string _peso;
+        public string Peso {
+
+            get { return _peso; }
+
+
+            set { if (_peso == value)
+                    return;
+
+                _peso = value;
+
+                OnPropertyChanged();
+            }
+
+        }
+
+        private string _idade;
+        public string Idade
+        {
+            get { return _idade; }
+
+
+            set
+            {
+                if (_idade == value)
+                    return;
+
+                _idade = value;
+
+                OnPropertyChanged();
+            }
+        }
+
     }
    
 }

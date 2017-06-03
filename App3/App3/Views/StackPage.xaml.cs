@@ -34,7 +34,7 @@ namespace App3
 
         async void Button_Clicked_3(object sender, EventArgs e)
         {
-           /// await Navigation.PushAsync(new Dietas());
+           await Navigation.PushAsync(new Dietas());
         }
     }
 }

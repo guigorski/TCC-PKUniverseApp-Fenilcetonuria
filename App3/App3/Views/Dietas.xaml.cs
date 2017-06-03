@@ -14,7 +14,7 @@ namespace App3
     {
         private List<Produto> _produto = new List<Produto>();
 
-        public Dietas(Produto produto)
+        public Dietas(Produto produto = null)
         {
 
             InitializeComponent();

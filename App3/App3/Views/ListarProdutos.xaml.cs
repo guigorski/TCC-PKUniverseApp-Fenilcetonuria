@@ -13,6 +13,15 @@ namespace App3
     public partial class ListarProdutos : ContentPage
 
     {
+
+        public ListarProdutos()
+        {
+            InitializeComponent();
+
+
+            listView.ItemsSource = GetProduto();
+        }
+
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -37,13 +46,7 @@ namespace App3
             return xprodutos.Where(c => c.Nome.StartsWith(searchText));
         }
 
-        public ListarProdutos()
-        {
-            InitializeComponent();
-
-
-            listView.ItemsSource = GetProduto();
-        }
+        
 
 
 
