@@ -3,37 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App3.Dietas"     Title="Acompanhamento Diário">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" Order="Primary" />
+        <ToolbarItem Text="Adicionar Produto" Clicked="ToolbarItem_Clicked" Order="Secondary" />
+        <ToolbarItem Text="Adicionar 'Meu Item'" Clicked="ToolbarItem_Clicked_1" Order="Secondary"/>
 
 
     </ContentPage.ToolbarItems>
     <StackLayout Padding="20">
-        <ListView x:Name="listView" 
-              HasUnevenRows="True" 
-              IsGroupingEnabled="True" 
-              GroupDisplayBinding="{Binding Title}" 
+        <ListView x:Name="listView"    
               SeparatorColor="#127ac7"
-         
               ItemSelected="listView_ItemSelected"
                >
             <ListView.ItemTemplate>
                 <DataTemplate>
-
-                    <ViewCell>
-                        <ViewCell.ContextActions>
-                        </ViewCell.ContextActions>
-                        <StackLayout Orientation="Horizontal" Padding="5">
-
-                            <StackLayout HorizontalOptions="StartAndExpand">
-                                <Label Text="{Binding Nome}"/>
-                                <Label Text="{Binding Quantidade}" TextColor="Black" />
-                            </StackLayout>
-
-                        </StackLayout>
-                    </ViewCell>
+                    <TextCell Text="{Binding Nome}" TextColor="Black"  Detail="{Binding Proteinas}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
-
         </ListView>
+
+        <Label Text="{Binding TotalFenilalanina}" x:Name="total" />
+        <ProgressBar  x:Name="ProgressBar" Progress="0.0" WidthRequest="300" HeightRequest="20"/>
     </StackLayout>
 </ContentPage>

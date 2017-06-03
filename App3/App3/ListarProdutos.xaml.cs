@@ -54,14 +54,14 @@ namespace App3
 
             var produto = e.SelectedItem as Produto;
             var nome = produto.Nome;
-            var fenil = ((produto.Proteinas * 0.05));
+            var fenil = produto.getFenilalanina(produto.Proteinas);
             var proteina = (produto.Proteinas);
             var cal = produto.Calorias;
             var quantidade = produto.Quantidade;
             var answer = await DisplayAlert("Adicionar ao Acompanhamento diário", "Nome: " + nome + "\nQuantidade (Porção): " + quantidade + "\nProteina: " + proteina + "\nFenilanina: " + fenil +
                 "\nCalorias: " + cal, "Adicionar", "Cancelar");
             if (answer == true)
-                await Navigation.PushAsync(new NovoItem());
+                 await Navigation.PushAsync(new Dietas(produto));
 
 
             listView.SelectedItem = null;

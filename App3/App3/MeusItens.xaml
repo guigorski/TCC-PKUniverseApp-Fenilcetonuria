@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App3.MeusItens"
@@ -6,35 +7,19 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" Order="Primary" />
 
-     
+
     </ContentPage.ToolbarItems>
     <StackLayout Padding="20">
-    
-        <ListView x:Name="listView" 
-              HasUnevenRows="True" 
-              IsGroupingEnabled="True" 
-              GroupDisplayBinding="{Binding Title}" 
+
+        <ListView x:Name="listView"    
               SeparatorColor="#127ac7"
-         
               ItemSelected="listView_ItemSelected"
                >
             <ListView.ItemTemplate>
                 <DataTemplate>
-
-                    <ViewCell>
-                        
-                        <StackLayout Orientation="Horizontal" Padding="5">
-                            <StackLayout HorizontalOptions="StartAndExpand">
-                                <Label Text="{Binding Nome}"/>
-                                <Label Text="{Binding Quantidade}" TextColor="Black" />
-                                
-                            </StackLayout>
-
-                        </StackLayout>
-                    </ViewCell>
+                    <TextCell Text="{Binding Nome}" TextColor="Black"  Detail="{Binding Ingredientes}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
-
         </ListView>
         <Button Text="Adicionar Item" BackgroundColor="#127ac7" TextColor="White" x:Name="btn" Clicked="btn_Clicked" />
 

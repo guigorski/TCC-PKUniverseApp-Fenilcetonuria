@@ -12,33 +12,43 @@ namespace App3
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MeusItens : ContentPage
     {
-        private List<Grupos> _produto;
-        
+
+
         public MeusItens()
         {
 
             InitializeComponent();
 
-            _produto = new List<Grupos>
-            {
-                new Grupos ("S", "S")
-                {
-                                    new Produto { Nome= "Sanduiche de Presunto e Queijo",Ingredientes= "Pao frances, Presunto, Queijo, Margarina ", Proteinas= 12, Quantidade= "150g",Calorias=400},
-                }
-                };
 
-            listView.ItemsSource = _produto;
-        
-    }
+            listView.ItemsSource = GetProduto();
+
+        }
+
+        public IEnumerable<Produto> GetProduto(string searchText = null)
+        {
+
+
+            var xprodutos = new List<Produto>
+            {
+
+                new Produto { Nome= "Sanduiche de Presunto e Queijo",Ingredientes= "Pao frances, Presunto, Queijo, Margarina "  ,Proteinas= 12, Quantidade= "150g",Calorias=400},
+
+            };
+
+            if (String.IsNullOrWhiteSpace(searchText))
+                return xprodutos;
+
+            return xprodutos.Where(c => c.Nome.StartsWith(searchText));
+        }
 
         async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-           await Navigation.PushAsync(new NovoMeuItem());
+            await Navigation.PushAsync(new NovoMeuItem());
         }
 
         async void Button_Clicked(object sender, EventArgs e)
         {
-           await Navigation.PopAsync();
+            await Navigation.PopAsync();
         }
 
         async void btn_Clicked(object sender, EventArgs e)
@@ -54,8 +64,9 @@ namespace App3
             var nome = produto.Nome;
             var proteina = produto.Proteinas;
             var fenil = ((produto.Proteinas * 0.05));
+            var quantidade = produto.Quantidade;
             var cal = produto.Calorias;
-            var answer = await DisplayAlert("Adicionar ao Acompanhamento diário", "Nome: " + nome + "\nProteina: " + proteina + "\nFenilanina: " + fenil + "\nCalorias: " + cal, "Adicionar", "Cancelar");
+            var answer = await DisplayAlert("Adicionar ao Acompanhamento diário", "Nome: " + nome + "\nQuantidade (Porção de todos os itens): " + quantidade + "\nProteina: " + proteina + "\nFenilanina: " + fenil + "\nCalorias: " + cal, "Adicionar", "Cancelar");
             if (answer == true)
                 await Navigation.PushAsync(new Dietas(produto));
 

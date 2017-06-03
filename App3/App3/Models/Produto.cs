@@ -14,7 +14,15 @@ namespace App3
         public string Marca { get; set; }
         public double Proteinas { get; set; }
         public double Calorias { get; set; }
-        
-       
+
+        public double getFenilalanina(double proteinas)
+        {
+            double fenilalanina;
+            fenilalanina = Proteinas * 0.05;
+
+            return fenilalanina;
+        }
     }
+
+   
 }

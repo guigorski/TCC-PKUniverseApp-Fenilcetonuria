@@ -12,18 +12,35 @@ namespace App3
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Dietas : ContentPage
     {
-        private List<Produto> _produto;
+        private List<Produto> _produto = new List<Produto>();
+
         public Dietas(Produto produto)
         {
 
             InitializeComponent();
 
-            _produto = new List<Produto>
-            {
-                 new Produto { Nome = produto.Nome, Quantidade = produto.Quantidade, Calorias = produto.Calorias, Proteinas = produto.Proteinas }
-            };
+            var x = produto;
+            addProduto(x);
 
-            listView.ItemsSource = _produto;
+            listView.ItemsSource = GetProduto();
+        }
+        
+        public void addProduto(Produto produto)
+        {
+             _produto.Add(produto);
+
+        }
+
+        public IEnumerable<Produto> GetProduto()
+        {
+            return _produto;
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            await ProgressBar.ProgressTo(0.3, 900, Easing.Linear);
         }
 
         private void btn_Clicked(object sender, EventArgs e)
@@ -33,12 +50,12 @@ namespace App3
 
         async void Button_Clicked(object sender, EventArgs e)
         {
-           await Navigation.PopAsync();
+            await Navigation.PopAsync();
         }
 
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            DisplayAlert("Adicionar novo Item", "Adicione aqui seu novo item personalizado", "OK");
+            await Navigation.PushAsync(new ListarProdutos());
 
         }
 
@@ -52,9 +69,15 @@ namespace App3
             var fenil = ((produto.Proteinas * 0.05));
             var cal = produto.Calorias;
             DisplayAlert("Adicionar ao Acompanhamento diário", "Nome: " + nome + "\nProteina: " + proteina + "\nFenilanina: " + fenil + "\nCalorias: " + cal, "OK");
-            
+
 
             listView.SelectedItem = null;
+        }
+
+        async void ToolbarItem_Clicked_1(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MeusItens());
+
         }
     }
 }
