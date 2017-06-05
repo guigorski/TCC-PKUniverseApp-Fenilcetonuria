@@ -21,8 +21,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Adicionar Item" BackgroundColor="#127ac7" TextColor="White" x:Name="btn" Clicked="btn_Clicked" />
-
+        <Button Text="Adicionar item"  BackgroundColor="#1dabf0" VerticalOptions="Center"  x:Name="AddNovoItem" Clicked="AddNovoItem_Clicked"/>
+        <Button Text="Deletar item" VerticalOptions="Center"  BackgroundColor="#ff4035" x:Name="DeletarNovoItem" Clicked="DeletarNovoItem_Clicked"/>
         <Button Text="Voltar" Clicked="Button_Clicked"  VerticalOptions="End" />
     </StackLayout>
 </ContentPage>

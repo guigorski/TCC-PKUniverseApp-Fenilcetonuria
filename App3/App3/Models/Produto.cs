@@ -14,7 +14,6 @@ namespace App3
 
         public string Nome { get; set; }
         public string Quantidade { get; set; }
-        public string Ingredientes { get; set; }
         public string Marca { get; set; }
 
         public double Proteinas { get; set; }

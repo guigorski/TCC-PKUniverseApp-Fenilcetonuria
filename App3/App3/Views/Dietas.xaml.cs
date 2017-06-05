@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App3.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace App3
     {
         private List<Produto> _produto = new List<Produto>();
 
-        public Dietas(Produto produto = null)
+        public Dietas(Produto produto = null, MeuItem meuitem = null)
         {
 
             InitializeComponent();
