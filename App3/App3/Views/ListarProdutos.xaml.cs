@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Collections.ObjectModel;
+using App3.Views;
 
 namespace App3
 {
@@ -13,16 +15,35 @@ namespace App3
     public partial class ListarProdutos : ContentPage
 
     {
+        private SQLiteAsyncConnection _connection;
+        private ObservableCollection<Produto> _produto;
 
         public ListarProdutos()
         {
             InitializeComponent();
 
 
-            listView.ItemsSource = GetProduto();
+            _connection = DependencyService.Get<ISQLiteDb>().GetConnection();
 
 
         }
+
+        protected override async void OnAppearing()
+        {
+
+            await _connection.CreateTableAsync<Produto>();
+
+
+            var produtos = await _connection.Table<Produto>().ToListAsync();
+
+            _produto = new ObservableCollection<Produto>(produtos);
+
+           
+            listView.ItemsSource = _produto;
+
+            base.OnAppearing();
+        }
+
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -93,6 +114,9 @@ namespace App3
             await Navigation.PushAsync(new NovoItem());
         }
 
-
+        async void Button_Clicked_1(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new DeletarItem());
+        }
     }
 }

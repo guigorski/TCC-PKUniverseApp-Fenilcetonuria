@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,14 +14,44 @@ namespace App3
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NovoItem : ContentPage
     {
+        private SQLiteAsyncConnection _connection;
         public NovoItem()
         {
             InitializeComponent();
+
+            _connection = DependencyService.Get<ISQLiteDb>().GetConnection();
+
+
         }
 
-        private void enviar_Clicked(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
-            DisplayAlert("Adicioado", "Produto adicionado com sucesso!", "OK");
+            await _connection.CreateTableAsync<Pessoa>();
+        }
+
+            async void enviar_Clicked(object sender, EventArgs e)
+        {
+
+            try
+            {
+                var getProteina = Double.Parse(xProteina.Text);
+                var getCalorias = Double.Parse(xCalorias.Text);
+                var pes = new Produto { Nome = xNomeProduto.Text, Marca = xMarca.Text, Proteinas = getProteina, Quantidade = xQuantidade.Text, Calorias = getCalorias };
+
+                if (pes.Nome == null)
+                {
+                    await DisplayAlert("Ops, O Produto precisa ter um nome", "", "Ok");
+                }
+                else
+                {
+                    await DisplayAlert("Produto adicionado com sucesso!", "Agora este produto faz parte da sua base de dados para os calculos", "OK");
+                    await _connection.InsertAsync(pes);
+                }
+                await Navigation.PopAsync();
+            }
+            catch {
+               await DisplayAlert("Ops, Algo deu errado!", "Talvez você tenha inserido algumas palavras nos campos: Proteinas ou Calorias", "OK");
+            }
         }
 
         async void Button_Clicked(object sender, EventArgs e)

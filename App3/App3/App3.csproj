@@ -42,6 +42,9 @@
     <Compile Include="Views\AtualizarDados.xaml.cs">
       <DependentUpon>AtualizarDados.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DeletarItem.xaml.cs">
+      <DependentUpon>DeletarItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DetalhesProdutos.xaml.cs">
       <DependentUpon>DetalhesProdutos.xaml</DependentUpon>
     </Compile>
@@ -166,6 +169,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DetalhesProdutos.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DeletarItem.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
