@@ -40,8 +40,8 @@ namespace App3
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private string _peso;
-        public string Peso {
+        private double _peso;
+        public double Peso {
 
             get { return _peso; }
 
@@ -56,8 +56,8 @@ namespace App3
 
         }
 
-        private string _idade;
-        public string Idade
+        private int _idade;
+        public int Idade
         {
             get { return _idade; }
 

@@ -22,7 +22,7 @@ namespace App3.Droid
         public SQLiteAsyncConnection GetConnection()
         {
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            var path = Path.Combine(documentsPath, "PKUniverse.db3");
+            var path = Path.Combine(documentsPath, "PKUniverse1.db3");
 
             return new SQLiteAsyncConnection(path);
         }

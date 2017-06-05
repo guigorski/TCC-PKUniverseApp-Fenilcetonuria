@@ -19,7 +19,7 @@ namespace App3.UWP
         public SQLiteAsyncConnection GetConnection()
         {
             var documentsPath = ApplicationData.Current.LocalFolder.Path;
-            var path = Path.Combine(documentsPath, "PKUniverse.db3");
+            var path = Path.Combine(documentsPath, "PKUniverse1.db3");
             return new SQLiteAsyncConnection(path);
         }
     }

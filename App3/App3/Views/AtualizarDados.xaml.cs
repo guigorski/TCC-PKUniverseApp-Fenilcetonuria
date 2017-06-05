@@ -28,18 +28,29 @@ namespace App3
         }
         protected override async void OnAppearing()
         {
-           await _connection.CreateTableAsync<Pessoa>();
+            var pe = new Pessoa { Nome = "Usuario", Peso = 00, Idade = 00 };
+
+            await _connection.CreateTableAsync<Pessoa>();
 
            
             var pessoas = await _connection.Table<Pessoa>().ToListAsync();
+            
             _pessoa = new ObservableCollection<Pessoa>(pessoas);
+
+            if (_pessoa.Count == 0)
+            {
+                _pessoa.Add(pe);
+                await _connection.InsertAsync(pe);
+            }
             listView.ItemsSource = _pessoa;
 
             
             var pes = _pessoa[0];
             xNome.Text = pes.Nome;
-            xPeso.Text = pes.Peso;
-            xData.Text = pes.Idade;
+            var PesoToString = pes.Peso.ToString();
+            xPeso.Text = PesoToString;
+            var IdadeToString = pes.Idade.ToString();
+            xData.Text = IdadeToString;
 
 
             base.OnAppearing();
@@ -60,8 +71,10 @@ namespace App3
             await DisplayAlert("Dados Atulizados com Sucesso!", "Os dados foram atualizados e já estão disponiveis para os calculos", "OK");
             var pes = _pessoa[0];
             pes.Nome = xNome.Text;
-            pes.Peso = xPeso.Text;
-
+            var PesoToInt = Double.Parse(xPeso.Text);
+            pes.Peso = PesoToInt;
+            var IdadeToInt = Int32.Parse(xData.Text);
+            pes.Idade = IdadeToInt;
             await _connection.UpdateAsync(pes);
         }
 
