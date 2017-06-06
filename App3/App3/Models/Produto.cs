@@ -19,7 +19,7 @@ namespace App3
         public double Proteinas { get; set; }
         public double Calorias { get; set; }
 
-        public double getFenilalanina(double proteinas)
+        public double getFenilalanina()
         {
             double fenilalanina;
             fenilalanina = Proteinas * 0.05;

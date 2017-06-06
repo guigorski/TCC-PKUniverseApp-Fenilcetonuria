@@ -1,6 +1,8 @@
 ﻿using App3.Models;
+using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,10 @@ namespace App3
     public partial class Dietas : ContentPage
     {
         private List<Produto> _produto = new List<Produto>();
+        private ObservableCollection<Pessoa> _pessoa;
+        private SQLiteAsyncConnection _connection;
+        private double x;
+        private double aux;
 
         public Dietas(Produto produto = null, MeuItem meuitem = null)
         {
@@ -23,9 +29,15 @@ namespace App3
             var x = produto;
             addProduto(x);
 
+            _connection = DependencyService.Get<ISQLiteDb>().GetConnection();
+
+
             listView.ItemsSource = GetProduto();
         }
-        
+
+    
+
+
         public void addProduto(Produto produto)
         {
              _produto.Add(produto);
@@ -39,9 +51,54 @@ namespace App3
 
         protected override async void OnAppearing()
         {
+            await _connection.CreateTableAsync<Pessoa>();
+
+
+            var pessoas = await _connection.Table<Pessoa>().ToListAsync();
+
+            _pessoa = new ObservableCollection<Pessoa>(pessoas);
+
+            var pe = _pessoa[0];
+
+
+            if (pe.Peso == 00 || pe.Idade == 00)
+            {
+              var resposta =  await DisplayAlert("Ops, parece que voce ainda nao atualizou seus dados", "Deseja ir até a aba atualizar dados?", "Sim", "Não");
+                if (resposta == true)
+                {
+                    await Navigation.PushAsync(new AtualizarDados());
+                }
+                else
+                    await Navigation.PopAsync();
+            }
+            else
+            {
+                if (pe.Idade == 0.3)
+                {
+                    await DisplayAlert("Casou certinho", "", "ok");
+                    var nMin = pe.Peso * 20;
+                    var nMax = pe.Peso * 70;
+                    xmin.Text = ("Qte Minima necessária de Fenilalanina: " + nMin);
+                    xmax.Text = ("Qte Maxima necessária de Fenilalanina: " + nMax);
+                }
+
+              
+               
+            }
+
             base.OnAppearing();
 
-            await ProgressBar.ProgressTo(0.3, 900, Easing.Linear);
+            
+             x = _produto[0].getFenilalanina();
+
+           
+
+            await DisplayAlert("oioioi" + x, "", "OK");
+                xCalc.Text = x.ToString();
+
+        
+
+            await ProgressBar.ProgressTo(x, 900, Easing.Linear);
         }
 
         private void btn_Clicked(object sender, EventArgs e)

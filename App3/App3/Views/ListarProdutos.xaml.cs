@@ -45,7 +45,7 @@ namespace App3
         }
 
 
-        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+       public void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
 
             listView.ItemsSource = GetProduto(e.NewTextValue);
@@ -80,7 +80,7 @@ namespace App3
 
             var produto = e.SelectedItem as Produto;
             var nome = produto.Nome;
-            var fenil = produto.getFenilalanina(produto.Proteinas);
+            var fenil = produto.getFenilalanina();
             var proteina = (produto.Proteinas);
             var cal = produto.Calorias;
             var quantidade = produto.Quantidade;

@@ -56,8 +56,8 @@ namespace App3
 
         }
 
-        private int _idade;
-        public int Idade
+        private double _idade;
+        public double Idade
         {
             get { return _idade; }
 

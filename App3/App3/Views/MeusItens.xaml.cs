@@ -38,12 +38,10 @@ namespace App3
             await _connection.CreateTableAsync<MeuItem>();
 
 
-            var produtos = await _connection.Table<MeuItem>().ToListAsync();
-
-            _produto = new ObservableCollection<MeuItem>(produtos);
+          
 
 
-            listView.ItemsSource = _produto;
+            listView.ItemsSource = GetProduto();
 
             base.OnAppearing();
         }

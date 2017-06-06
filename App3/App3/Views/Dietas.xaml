@@ -20,7 +20,10 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Label Text="{Binding TotalFenilalanina}" x:Name="total" />
-        <ProgressBar  x:Name="ProgressBar" Progress="0.0" WidthRequest="300" HeightRequest="20"/>
+        <Label x:Name="xCalc" Text="0" HorizontalOptions="Center" />
+        <ProgressBar  x:Name="ProgressBar" Progress="0.0" WidthRequest="300" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+        <Label Text="0000" HorizontalOptions="Center" TextColor="Black" x:Name="xmin" />
+        <Label Text="0000" HorizontalOptions="Center" TextColor="Black" x:Name="xmax" />
     </StackLayout>
 </ContentPage>
