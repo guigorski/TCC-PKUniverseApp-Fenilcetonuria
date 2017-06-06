@@ -81,10 +81,7 @@ namespace App3
 
 
 
-        async void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-           
-        }
+       
 
        
     }

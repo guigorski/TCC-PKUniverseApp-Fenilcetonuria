@@ -15,13 +15,13 @@ namespace App3
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Dietas : ContentPage
     {
-        private List<Produto> _produto = new List<Produto>();
+        private List<IProduto> _produto = new List<IProduto>();
         private ObservableCollection<Pessoa> _pessoa;
+        private ObservableCollection<IProduto> ListarTodos;
         private SQLiteAsyncConnection _connection;
         private double x;
-        private double aux;
 
-        public Dietas(Produto produto = null, MeuItem meuitem = null)
+        public Dietas(IProduto produto = null)
         {
 
             InitializeComponent();
@@ -38,13 +38,13 @@ namespace App3
     
 
 
-        public void addProduto(Produto produto)
+        public void addProduto(IProduto produto)
         {
              _produto.Add(produto);
 
         }
 
-        public IEnumerable<Produto> GetProduto()
+        public IEnumerable<IProduto> GetProduto()
         {
             return _produto;
         }
@@ -73,9 +73,10 @@ namespace App3
             }
             else
             {
+                
+                
                 if (pe.Idade == 0.3)
                 {
-                    await DisplayAlert("Casou certinho", "", "ok");
                     var nMin = pe.Peso * 20;
                     var nMax = pe.Peso * 70;
                     xmin.Text = ("Qte Minima necessária de Fenilalanina: " + nMin);
@@ -91,9 +92,8 @@ namespace App3
             
              x = _produto[0].getFenilalanina();
 
-           
 
-            await DisplayAlert("oioioi" + x, "", "OK");
+
                 xCalc.Text = x.ToString();
 
         

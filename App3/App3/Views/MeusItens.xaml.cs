@@ -37,11 +37,13 @@ namespace App3
 
             await _connection.CreateTableAsync<MeuItem>();
 
+            var produtos = await _connection.Table<MeuItem>().ToListAsync();
 
-          
+            _produto = new ObservableCollection<MeuItem>(produtos);
 
 
-            listView.ItemsSource = GetProduto();
+
+            listView.ItemsSource = _produto;
 
             base.OnAppearing();
         }
@@ -85,18 +87,17 @@ namespace App3
         {
             var produto = e.SelectedItem as MeuItem;
             var nome = produto.Nome;
-            var fenil = produto.getFenilalanina(produto.Proteinas);
+            var fenil = produto.getFenilalanina();
             var proteina = (produto.Proteinas);
             var cal = produto.Calorias;
             var quantidade = produto.Quantidade;
             var answer = await DisplayAlert("Adicionar ao Acompanhamento diário", "Nome: " + nome + "\nQuantidade (Porção): " + quantidade + "\nProteina: " + proteina + "\nFenilanina: " + fenil +
-                "\nCalorias: " + cal, "Adicionar", "Cancelar");
+               "\nCalorias: " + cal, "Adicionar", "Cancelar");
             if (answer == true)
-                await Navigation.PushAsync(new Dietas(null, produto));
+                await Navigation.PushAsync(new Dietas(produto));
 
 
 
-            listView.SelectedItem = null;
 
         }
 

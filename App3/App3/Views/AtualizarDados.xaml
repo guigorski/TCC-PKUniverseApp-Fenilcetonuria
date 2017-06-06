@@ -7,13 +7,12 @@
     <StackLayout>
 
         <Entry  Text="{Binding Nome}" Keyboard="Text" Placeholder="Nome" x:Name="xNome"/>
-        <Entry Keyboard="Numeric" Placeholder="Peso" x:Name="xPeso"/>
-        <Entry Keyboard="Numeric" Placeholder="Idade" x:Name="xData"/>
+        <Entry  Placeholder="Peso" x:Name="xPeso"/>
+        <Entry  Placeholder="Idade" x:Name="xData"/>
         <Button Text="Enviar" x:Name="enviar" Clicked="enviar_Clicked" BackgroundColor="#127ac7" TextColor="White"/>
 
         <ListView x:Name="listView"    
               SeparatorColor="#127ac7"
-                  ItemSelected="listView_ItemSelected"
                >
             <ListView.ItemTemplate>
                 <DataTemplate>

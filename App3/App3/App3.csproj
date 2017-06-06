@@ -35,6 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Models\IProduto.cs" />
+    <Compile Include="Models\MeuItem.cs" />
     <Compile Include="Service\ISQLiteDb.cs" />
     <Compile Include="Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -64,7 +66,6 @@
       <DependentUpon>MeusItens.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Grupos.cs" />
-    <Compile Include="Models\MeuItem.cs" />
     <Compile Include="Models\Pessoa.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Views\NovoItem.xaml.cs">
