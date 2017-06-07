@@ -26,6 +26,6 @@
         <Label Text="0000" HorizontalOptions="Center" TextColor="Black" x:Name="xmin" />
         <Label Text="0000" HorizontalOptions="Center" TextColor="Black" x:Name="xmax" />
 
-        <Button Text="Deletar Tudo" BackgroundColor="ff4035" x:Name="Del" Clicked="Del_Clicked" />
+        <Button Text="Deletar Tudo" BackgroundColor="#ff4035" x:Name="Del" Clicked="Del_Clicked" />
     </StackLayout>
 </ContentPage>
