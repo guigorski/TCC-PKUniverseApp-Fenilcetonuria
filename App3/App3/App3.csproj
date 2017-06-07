@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Models\IProduto.cs" />
+    <Compile Include="Models\ListaDietas.cs" />
     <Compile Include="Models\MeuItem.cs" />
     <Compile Include="Service\ISQLiteDb.cs" />
     <Compile Include="Views\App.xaml.cs">

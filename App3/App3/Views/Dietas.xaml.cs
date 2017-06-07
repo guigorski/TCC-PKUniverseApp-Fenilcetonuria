@@ -15,9 +15,9 @@ namespace App3
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Dietas : ContentPage
     {
-        private List<IProduto> _produto = new List<IProduto>();
+        private List<ListaDietas> _produto = new List<ListaDietas>();
         private ObservableCollection<Pessoa> _pessoa;
-        private ObservableCollection<IProduto> ListarTodos;
+        private ObservableCollection<ListaDietas> lista;
         private SQLiteAsyncConnection _connection;
         private double x;
 
@@ -26,34 +26,74 @@ namespace App3
 
             InitializeComponent();
 
-            var x = produto;
-            addProduto(x);
-
             _connection = DependencyService.Get<ISQLiteDb>().GetConnection();
 
 
-            listView.ItemsSource = GetProduto();
+            //CriaProduto(produto);
+            if (produto != null)
+            {
+                var x = CriaProduto(produto);
+                _produto.Add(x);
+            }
+          
+            
+         
+
+           
         }
 
-    
-
-
-        public void addProduto(IProduto produto)
+        
+        public ListaDietas CriaProduto(IProduto produto)
         {
-             _produto.Add(produto);
+            var nome = produto.Nome;
+            var prot = produto.Proteinas;
 
-        }
+            var addprod = new ListaDietas { Nome = nome, Proteinas = prot };
 
-        public IEnumerable<IProduto> GetProduto()
-        {
-            return _produto;
+            return addprod;       
+            
         }
+       
 
         protected override async void OnAppearing()
         {
             await _connection.CreateTableAsync<Pessoa>();
 
+            await _connection.CreateTableAsync<ListaDietas>();
 
+            await _connection.InsertAllAsync(_produto);
+
+            var produtos = await _connection.Table<ListaDietas>().ToListAsync();
+
+            lista = new ObservableCollection<ListaDietas>(produtos);
+
+
+            listView.ItemsSource = lista;
+
+            GeraCalculos();
+
+            
+
+            base.OnAppearing();
+
+
+            for (int i = 0; i < lista.Count; i++)
+            {
+                x += lista[i].getFenilalanina();
+
+            }
+
+
+
+                xCalc.Text = x.ToString();
+
+        
+
+            await ProgressBar.ProgressTo(x, 900, Easing.Linear);
+        }
+
+        async void GeraCalculos()
+        {
             var pessoas = await _connection.Table<Pessoa>().ToListAsync();
 
             _pessoa = new ObservableCollection<Pessoa>(pessoas);
@@ -63,7 +103,7 @@ namespace App3
 
             if (pe.Peso == 00 || pe.Idade == 00)
             {
-              var resposta =  await DisplayAlert("Ops, parece que voce ainda nao atualizou seus dados", "Deseja ir até a aba atualizar dados?", "Sim", "Não");
+                var resposta = await DisplayAlert("Ops, parece que voce ainda nao atualizou seus dados", "Deseja ir até a aba atualizar dados?", "Sim", "Não");
                 if (resposta == true)
                 {
                     await Navigation.PushAsync(new AtualizarDados());
@@ -73,32 +113,19 @@ namespace App3
             }
             else
             {
-                
-                
-                if (pe.Idade == 0.3)
-                {
-                    var nMin = pe.Peso * 20;
-                    var nMax = pe.Peso * 70;
-                    xmin.Text = ("Qte Minima necessária de Fenilalanina: " + nMin);
-                    xmax.Text = ("Qte Maxima necessária de Fenilalanina: " + nMax);
-                }
 
-              
-               
+                double i = 0.3;
+                    if (pe.Idade == i)
+                    {
+                        var nMin = pe.Peso * 20;
+                        var nMax = pe.Peso * 70;
+                        xmin.Text = ("Qte Minima necessária de Fenilalanina: " + nMin);
+                        xmax.Text = ("Qte Maxima necessária de Fenilalanina: " + nMax);
+                    }
+
+                
+
             }
-
-            base.OnAppearing();
-
-            
-             x = _produto[0].getFenilalanina();
-
-
-
-                xCalc.Text = x.ToString();
-
-        
-
-            await ProgressBar.ProgressTo(x, 900, Easing.Linear);
         }
 
         private void btn_Clicked(object sender, EventArgs e)
@@ -121,21 +148,33 @@ namespace App3
         {
             if (e.SelectedItem == null)
                 return;
-            var produto = e.SelectedItem as Produto;
+            var produto = e.SelectedItem as ListaDietas;
             var nome = produto.Nome;
             var proteina = produto.Proteinas;
-            var fenil = ((produto.Proteinas * 0.05));
-            var cal = produto.Calorias;
-            DisplayAlert("Adicionar ao Acompanhamento diário", "Nome: " + nome + "\nProteina: " + proteina + "\nFenilanina: " + fenil + "\nCalorias: " + cal, "OK");
+            var fenil = produto.getFenilalanina();
+         
+            DisplayAlert("Adicionar ao Acompanhamento diário", "Nome: " + nome + "\nProteina: " + proteina + "\nFenilanina: " + fenil, "OK");
 
 
-            listView.SelectedItem = null;
         }
 
         async void ToolbarItem_Clicked_1(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MeusItens());
 
+        }
+
+        async void Del_Clicked(object sender, EventArgs e)
+        {
+           var resposta = await DisplayAlert("Deseja realmente deletar tudo?", "Essa ação não pode ser desfeita", "Aceitar", "Cancelar");
+            if (resposta == true)
+            {
+                for (int i = 0; i < lista.Count; i++)
+                {
+                    await _connection.DeleteAsync(lista[i]);
+                }
+               await Navigation.PopAsync();
+            }
         }
     }
 }

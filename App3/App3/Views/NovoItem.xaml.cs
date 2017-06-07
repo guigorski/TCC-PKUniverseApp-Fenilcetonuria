@@ -26,7 +26,7 @@ namespace App3
 
         protected override async void OnAppearing()
         {
-            await _connection.CreateTableAsync<Pessoa>();
+            await _connection.CreateTableAsync<Produto>();
         }
 
             async void enviar_Clicked(object sender, EventArgs e)
