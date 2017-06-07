@@ -6,14 +6,16 @@
              x:Class="App3.StackPage"
                  BackgroundColor="#127ac7">
     <StackLayout Spacing="20" VerticalOptions="Center">
-        <Label Text="Bem vindo ao PKUniverse" TextColor="White" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center"/>
-        <Label Text="O seu apoio para o manejo dietoterápico" TextColor="White" FontSize="18" HorizontalOptions="Center"/>
-        <Button  Text="Atualizar Dados" BackgroundColor="#1dabf0"  TextColor="White" Clicked="Button_Clicked"/>
-        <Button  Text="Listar Produtos" BackgroundColor="#1dabf0" TextColor="White" Clicked="Button_Clicked_1"/>
-        
-        <Button  Text="Meus Itens" BackgroundColor="#1dabf0"  TextColor="White" Clicked="Button_Clicked_2"/>
-        <Button  Text="Acompanhamento Diário" BackgroundColor="#1dabf0"  TextColor="White" Clicked="Button_Clicked_3"/>
+        <Label Text="Bem vindo ao PKUniverse" TextColor="White" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" />
+        <Label Text="O seu aplicativo para o apoio ao manejo dietoterápico" TextColor="White" FontSize="18" HorizontalOptions="Center" VerticalOptions="Start"/>
 
+        <Grid>
+      
+            <Button Grid.Row="0" Grid.Column="0" Text="Atualizar Dados" BackgroundColor="#1dabf0"  TextColor="White" Clicked="Button_Clicked" />
+            <Button  Grid.Row="1" Grid.Column="0" Text="Listar Produtos" BackgroundColor="#1dabf0" TextColor="White" Clicked="Button_Clicked_1"/>
+            <Button  Grid.Row="0" Grid.Column="1" Text="Meus Itens" BackgroundColor="#1dabf0"  TextColor="White" Clicked="Button_Clicked_2"/>
+            <Button  Grid.Row="1" Grid.Column="1" Text="Acompanhamento Diário" BackgroundColor="#1dabf0"  TextColor="White" Clicked="Button_Clicked_3"/>
+        </Grid>
 
     </StackLayout>
 </ContentPage>

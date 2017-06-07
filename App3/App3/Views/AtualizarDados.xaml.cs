@@ -68,15 +68,22 @@ namespace App3
 
         async void enviar_Clicked(object sender, EventArgs e)
         {
-            var pes = _pessoa[0];
-            pes.Nome = xNome.Text;
-            var PesoToInt = Double.Parse(xPeso.Text);
-            pes.Peso = PesoToInt;
-            var IdadeToInt = Double.Parse(xData.Text);
-            pes.Idade = IdadeToInt;
-            await _connection.UpdateAsync(pes);
-            await DisplayAlert("Dados Atulizados com Sucesso!", "Os dados foram atualizados e já estão disponiveis para os calculos", "OK");
-            await Navigation.PopAsync();
+            try
+            {
+                var pes = _pessoa[0];
+                pes.Nome = xNome.Text;
+                var PesoToInt = Double.Parse(xPeso.Text);
+                pes.Peso = PesoToInt;
+                var IdadeToInt = Double.Parse(xData.Text);
+                pes.Idade = IdadeToInt;
+                await _connection.UpdateAsync(pes);
+                await DisplayAlert("Dados Atulizados com Sucesso!", "Os dados foram atualizados e já estão disponiveis para os calculos", "OK");
+                await Navigation.PopAsync();
+            }
+            catch
+            {
+               await DisplayAlert("Ops, parece que você adicionou algum dado incorretamente", "Verifique seus dados e tente novamente", "OK");
+            }
         }
 
 
