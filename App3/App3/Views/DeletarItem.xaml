@@ -15,7 +15,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Voltar" VerticalOptions="End" Clicked="Button_Clicked"/>
     </StackLayout>
 
 </ContentPage>

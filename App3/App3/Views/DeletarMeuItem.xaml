@@ -13,7 +13,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Voltar" VerticalOptions="End" x:Name="Voltar" Clicked="Voltar_Clicked"/>
     </StackLayout>
 
 </ContentPage>

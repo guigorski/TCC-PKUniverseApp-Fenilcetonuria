@@ -9,7 +9,7 @@
         <Entry  Text="{Binding Nome}" Keyboard="Text" Placeholder="Nome" x:Name="xNome"/>
         <Entry  Placeholder="Peso" x:Name="xPeso"/>
         <Entry  Placeholder="Idade" x:Name="xData"/>
-        <Button Text="Enviar" x:Name="enviar" Clicked="enviar_Clicked" BackgroundColor="#127ac7" TextColor="White"/>
+        <Button BorderRadius="8" Text="Enviar" x:Name="enviar" Clicked="enviar_Clicked" BackgroundColor="#127ac7" TextColor="White"/>
 
         <ListView x:Name="listView"    
               SeparatorColor="#127ac7"
@@ -21,7 +21,6 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button  Text="Voltar" Clicked="Button_Clicked" VerticalOptions="End"/>
 
     </StackLayout>
 </ContentPage>

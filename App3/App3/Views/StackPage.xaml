@@ -11,10 +11,10 @@
 
         <Grid>
       
-            <Button Grid.Row="0" Grid.Column="0" Text="Atualizar Dados" BackgroundColor="#1dabf0"  TextColor="White" Clicked="Button_Clicked" />
-            <Button  Grid.Row="1" Grid.Column="0" Text="Listar Produtos" BackgroundColor="#1dabf0" TextColor="White" Clicked="Button_Clicked_1"/>
-            <Button  Grid.Row="0" Grid.Column="1" Text="Meus Itens" BackgroundColor="#1dabf0"  TextColor="White" Clicked="Button_Clicked_2"/>
-            <Button  Grid.Row="1" Grid.Column="1" Text="Acompanhamento Diário" BackgroundColor="#1dabf0"  TextColor="White" Clicked="Button_Clicked_3"/>
+            <Button BorderRadius="8" Grid.Row="0" Grid.Column="0" Text="Atualizar Dados" BackgroundColor="#1dabf0"  TextColor="White" Clicked="Button_Clicked" />
+            <Button  BorderRadius="8" Grid.Row="1" Grid.Column="0" Text="Listar Produtos" BackgroundColor="#1dabf0" TextColor="White" Clicked="Button_Clicked_1"/>
+            <Button BorderRadius="8" Grid.Row="0" Grid.Column="1" Text="Meus Itens" BackgroundColor="#1dabf0"  TextColor="White" Clicked="Button_Clicked_2"/>
+            <Button BorderRadius="8" Grid.Row="1" Grid.Column="1" Text="Acompanhamento Diário" BackgroundColor="#1dabf0"  TextColor="White" Clicked="Button_Clicked_3"/>
         </Grid>
 
     </StackLayout>

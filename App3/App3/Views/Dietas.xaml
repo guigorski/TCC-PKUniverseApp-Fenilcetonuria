@@ -21,11 +21,14 @@
         </ListView>
 
         <Label x:Name="xCalc" Text="0" HorizontalOptions="Center" />
+        <Label x:Name="xFenil" Text="0" HorizontalOptions="Center" />
+
         <ProgressBar  x:Name="ProgressBar" Progress="0.0" WidthRequest="300" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center"/>
 
         <Label Text="0000" HorizontalOptions="Center" TextColor="Black" x:Name="xmin" />
         <Label Text="0000" HorizontalOptions="Center" TextColor="Black" x:Name="xmax" />
+        
+        <Button x:Name="Del" Clicked="Del_Clicked" Text="Deletar" />
 
-        <Button Text="Deletar Tudo" x:Name="Del" Clicked="Del_Clicked" />
     </StackLayout>
 </ContentPage>

@@ -9,10 +9,8 @@
         <Entry  Keyboard="Text" Placeholder="Nome do Produto" x:Name="xNomeProduto"/>
         <Entry Keyboard="Text" Placeholder="Marca" x:Name="xMarca" />
         <Entry Keyboard="Numeric" Placeholder="Quantidade (g)" x:Name="xQuantidade"/>
-        <Entry Keyboard="Numeric" Placeholder="Proteinas" x:Name="xProteina"/>
-        <Entry Keyboard="Numeric" Placeholder="Calorias" x:Name="xCalorias"/>
-        <Button Text="Enviar" x:Name="enviar" Clicked="enviar_Clicked"  BackgroundColor="#127ac7" TextColor="White"/>
-        <Button  Text="Voltar" Clicked="Button_Clicked" VerticalOptions="End"/>
+        <Entry  Placeholder="Proteinas" x:Name="xProteina"/>
+        <Button BorderRadius="8" Text="Enviar" x:Name="enviar" Clicked="enviar_Clicked"  BackgroundColor="#127ac7" TextColor="White"/>
 
     </StackLayout>
 

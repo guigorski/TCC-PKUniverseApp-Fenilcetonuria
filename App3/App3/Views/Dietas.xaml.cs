@@ -19,7 +19,7 @@ namespace App3
         private ObservableCollection<Pessoa> _pessoa;
         private ObservableCollection<ListaDietas> lista;
         private SQLiteAsyncConnection _connection;
-        private double x;
+        private double x,y;
         private double nMin, nMax;
 
         public Dietas(IProduto produto = null)
@@ -83,70 +83,85 @@ namespace App3
 
             }
 
-            double valorNormalizado = x / 300; 
+            for (int i = 0; i < lista.Count; i++)
+            {
+                y += lista[i].Proteinas;
 
-            xCalc.Text = x.ToString();
+            }
 
-            await DisplayAlert(valorNormalizado.ToString(), x.ToString(), nMax.ToString());
 
-            await ProgressBar.ProgressTo(valorNormalizado, 900, Easing.Linear);
+            double valorNormalizado = ((x*1000/2580));
+
+           await  DisplayAlert(valorNormalizado.ToString(), x.ToString(), "ok");
+
+            xCalc.Text = ("Proteinas totais: " + y.ToString() + " g" );
+            xFenil.Text = ("Fenilalanina total: " + (x*1000).ToString() + " mg" );
+
+            await ProgressBar.ProgressTo(valorNormalizado ,1200, Easing.Linear);
         }
 
         async void GeraCalculos()
         {
-            var pessoas = await _connection.Table<Pessoa>().ToListAsync();
-
-            _pessoa = new ObservableCollection<Pessoa>(pessoas);
-
-            var pe = _pessoa[0];
-
-
-            if (pe.Peso == 00 || pe.Idade == 00)
+            try
             {
-                var resposta = await DisplayAlert("Ops, parece que voce ainda nao atualizou seus dados", "Deseja ir até a aba atualizar dados?", "Sim", "Não");
-                if (resposta == true)
+                var pessoas = await _connection.Table<Pessoa>().ToListAsync();
+
+                _pessoa = new ObservableCollection<Pessoa>(pessoas);
+
+                var pe = _pessoa[0];
+
+
+                if (pe.Peso == 00 || pe.Idade == 00)
                 {
-                    await Navigation.PushAsync(new AtualizarDados());
-                }
-                else
-                    await Navigation.PopAsync();
-            }
-            else
-            {
-                
-                if (pe.Idade > 0.1 && pe.Idade <= 0.5)
-                {
-                    nMin = pe.Peso * 20;
-                    nMax = pe.Peso * 70;
-                }
-                else if (pe.Idade > 0.5 && pe.Idade <= 1)
-                {
-                    nMin = pe.Peso * 15;
-                    nMax = pe.Peso * 50;
-                }
-                else if (pe.Idade > 1 && pe.Idade <= 4)
-                {
-                    nMin = pe.Peso * 15;
-                    nMax = pe.Peso * 40;
-                }
-                else if (pe.Idade > 4 && pe.Idade <= 7)
-                {
-                    nMin = pe.Peso * 15;
-                    nMax = pe.Peso * 35;
-                }
-                else if (pe.Idade > 7 && pe.Idade <= 15)
-                {
-                    nMin = pe.Peso * 15;
-                    nMax = pe.Peso * 30;
+                    var resposta = await DisplayAlert("Ops, parece que voce ainda nao atualizou seus dados", "Deseja ir até a aba atualizar dados?", "Sim", "Não");
+                    if (resposta == true)
+                    {
+                        await Navigation.PushAsync(new AtualizarDados());
+                    }
+                    else
+                        await Navigation.PopAsync();
                 }
                 else
                 {
-                    nMin = pe.Peso * 10;
-                    nMax = pe.Peso * 30;
-                }
-                xmin.Text = ("Qte Minima necessária de Fenilalanina: " + nMin);
-                xmax.Text = ("Qte Maxima necessária de Fenilalanina: " + nMax);
 
+                    if (pe.Idade > 0.1 && pe.Idade <= 0.5)
+                    {
+                        nMin = pe.Peso * 20;
+                        nMax = pe.Peso * 70;
+                    }
+                    else if (pe.Idade > 0.5 && pe.Idade <= 1)
+                    {
+                        nMin = pe.Peso * 15;
+                        nMax = pe.Peso * 50;
+                    }
+                    else if (pe.Idade > 1 && pe.Idade <= 4)
+                    {
+                        nMin = pe.Peso * 15;
+                        nMax = pe.Peso * 40;
+                    }
+                    else if (pe.Idade > 4 && pe.Idade <= 7)
+                    {
+                        nMin = pe.Peso * 15;
+                        nMax = pe.Peso * 35;
+                    }
+                    else if (pe.Idade > 7 && pe.Idade <= 15)
+                    {
+                        nMin = pe.Peso * 15;
+                        nMax = pe.Peso * 30;
+                    }
+                    else
+                    {
+                        nMin = pe.Peso * 10;
+                        nMax = pe.Peso * 30;
+                    }
+                    xmin.Text = ("Qte Minima necessária de Fenilalanina: " + nMin + " mg");
+                    xmax.Text = ("Qte Maxima de Fenilalanina: " + nMax + " mg") ;
+
+                }
+            }catch
+            {
+               await DisplayAlert("Ops, algo deu errado!", "Talvez você não tenha atualizado seus dados ainda.", "OK");
+                await Navigation.PopAsync();
             }
         }
 

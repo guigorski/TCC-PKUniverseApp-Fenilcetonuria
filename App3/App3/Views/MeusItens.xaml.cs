@@ -39,10 +39,11 @@ namespace App3
 
             var produtos = await _connection.Table<MeuItem>().ToListAsync();
 
+             
+
             _produto = new ObservableCollection<MeuItem>(produtos);
 
-
-
+            _produto.OrderBy(item => item.Nome);
             listView.ItemsSource = _produto;
 
             base.OnAppearing();
@@ -91,8 +92,8 @@ namespace App3
             var proteina = (produto.Proteinas);
             var cal = produto.Calorias;
             var quantidade = produto.Quantidade;
-            var answer = await DisplayAlert("Adicionar ao Acompanhamento diário", "Nome: " + nome + "\nQuantidade (Porção): " + quantidade + "\nProteina: " + proteina + "\nFenilanina: " + fenil +
-               "\nCalorias: " + cal, "Adicionar", "Cancelar");
+            var answer = await DisplayAlert("Adicionar ao Acompanhamento diário", "Nome: " + nome + "\nQuantidade (Porção): " + quantidade + "\nProteina: " + proteina + "\nFenilanina: " + fenil 
+               , "Adicionar", "Cancelar");
             if (answer == true)
                 await Navigation.PushAsync(new Dietas(produto));
 

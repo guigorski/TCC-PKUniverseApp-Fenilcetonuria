@@ -36,8 +36,7 @@ namespace App3
             try
             {
                 var getProteina = Double.Parse(xProteina.Text);
-                var getCalorias = Double.Parse(xCalorias.Text);
-                var pes = new MeuItem { Nome = xItem.Text, Ingredientes = xIngredientes.Text, Proteinas = getProteina, Quantidade = xQuantidade.Text, Calorias = getCalorias };
+                var pes = new MeuItem { Nome = xItem.Text, Ingredientes = xIngredientes.Text, Proteinas = getProteina, Quantidade = xQuantidade.Text,  };
 
                 if (pes.Nome == null)
                 {

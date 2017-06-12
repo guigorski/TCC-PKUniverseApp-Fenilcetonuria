@@ -35,8 +35,7 @@ namespace App3
             try
             {
                 var getProteina = Double.Parse(xProteina.Text);
-                var getCalorias = Double.Parse(xCalorias.Text);
-                var pes = new Produto { Nome = xNomeProduto.Text, Marca = xMarca.Text, Proteinas = getProteina, Quantidade = xQuantidade.Text, Calorias = getCalorias };
+                var pes = new Produto { Nome = xNomeProduto.Text, Marca = xMarca.Text, Proteinas = getProteina, Quantidade = xQuantidade.Text };
 
                 if (pes.Nome == null)
                 {
@@ -44,7 +43,6 @@ namespace App3
                 }
                 else
                 {
-                    await DisplayAlert("Produto adicionado com sucesso!", "Agora este produto faz parte da sua base de dados para os calculos", "OK");
                     await _connection.InsertAsync(pes);
                 }
                 await Navigation.PopAsync();
