@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App3.ListarProdutos"
-             
+             Padding="10,10,10,10"
              >
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" Order="Primary" />
+        <ToolbarItem Icon="plus.png" Clicked="ToolbarItem_Clicked" Order="Primary"/>
 
 
     </ContentPage.ToolbarItems>
@@ -21,8 +21,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button BorderRadius="8" Text="Adicionar item"  BackgroundColor="#1dabf0" VerticalOptions="Center"  Clicked="Button_Clicked_2"/>
-        <Button BorderRadius="8" Text="Deletar item" VerticalOptions="Center"  BackgroundColor="#ff4035" Clicked="Button_Clicked_1"/>
+        <Button BorderRadius="6" Text="   Adicionar item   "   TextColor="White" BackgroundColor="#1dabf0"     VerticalOptions="Center" HorizontalOptions="Center" Clicked="Button_Clicked_2"/>
+        <Button BorderRadius="6" Text="    Deletar item    " TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#ff4035" Clicked="Button_Clicked_1"/>
     </StackLayout>
 
 </ContentPage>

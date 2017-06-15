@@ -92,12 +92,14 @@ namespace App3
 
             double valorNormalizado = ((x*1000/2580));
 
-           await  DisplayAlert(valorNormalizado.ToString(), x.ToString(), "ok");
 
             xCalc.Text = ("Proteinas totais: " + y.ToString() + " g" );
             xFenil.Text = ("Fenilalanina total: " + (x*1000).ToString() + " mg" );
 
             await ProgressBar.ProgressTo(valorNormalizado ,1200, Easing.Linear);
+
+            if (valorNormalizado > 1)
+               await DisplayAlert("Cuidado!", "Parece que você já consumiu a sua cota diária", "ok");
         }
 
         async void GeraCalculos()
@@ -154,7 +156,7 @@ namespace App3
                         nMin = pe.Peso * 10;
                         nMax = pe.Peso * 30;
                     }
-                    xmin.Text = ("Qte Minima necessária de Fenilalanina: " + nMin + " mg");
+                    xmin.Text = ("Qte Minima de Fenilalanina: " + nMin + " mg");
                     xmax.Text = ("Qte Maxima de Fenilalanina: " + nMax + " mg") ;
 
                 }
@@ -210,7 +212,7 @@ namespace App3
                 {
                     await _connection.DeleteAsync(lista[i]);
                 }
-               await Navigation.PopAsync();
+               await Navigation.PushAsync(new StackPage());
             }
         }
     }

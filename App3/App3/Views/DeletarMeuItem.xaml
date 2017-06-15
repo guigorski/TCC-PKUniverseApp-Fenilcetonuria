@@ -9,7 +9,7 @@
                >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Nome}" TextColor="Red"  Detail="{Binding Marca}" />
+                    <TextCell Text="{Binding Nome}" TextColor="Red"  Detail="{Binding Ingredientes}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

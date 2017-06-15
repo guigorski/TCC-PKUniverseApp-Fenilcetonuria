@@ -42,7 +42,6 @@ namespace App3
                 _pessoa.Add(pe);
                 await _connection.InsertAsync(pe);
             }
-            listView.ItemsSource = _pessoa;
 
             
             var pes = _pessoa[0];

@@ -3,13 +3,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App3.MeusItens"
-             Title="Meus Itens">
+             Title="Meus Itens"
+             Padding="10,10,10,10">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" Order="Primary" />
+        <ToolbarItem  Icon="plus.png" Text="Add" Clicked="ToolbarItem_Clicked" Order="Primary" />
 
 
     </ContentPage.ToolbarItems>
-    <StackLayout Padding="20">
+    <StackLayout>
 
         <ListView x:Name="listView"    
               SeparatorColor="#127ac7"
@@ -21,7 +22,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button BorderRadius="8" Text="Adicionar item"  BackgroundColor="#1dabf0" VerticalOptions="Center"  x:Name="AddNovoItem" Clicked="AddNovoItem_Clicked"/>
-        <Button  BorderRadius="8" Text="Deletar item" VerticalOptions="Center"  BackgroundColor="#ff4035" x:Name="DeletarNovoItem" Clicked="DeletarNovoItem_Clicked"/>
+        <Button BorderRadius="7" Text="Adicionar item" TextColor="White" BackgroundColor="#1dabf0" VerticalOptions="Center" HorizontalOptions="Center" x:Name="AddNovoItem" Clicked="AddNovoItem_Clicked"/>
+        <Button  BorderRadius="7" Text="Deletar item"  TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"  BackgroundColor="#ff4035" x:Name="DeletarNovoItem" Clicked="DeletarNovoItem_Clicked"/>
     </StackLayout>
 </ContentPage>

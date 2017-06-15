@@ -60,9 +60,6 @@
     <Compile Include="Views\ListarProdutos.xaml.cs">
       <DependentUpon>ListarProdutos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MeusItens.xaml.cs">
       <DependentUpon>MeusItens.xaml</DependentUpon>
     </Compile>
@@ -148,10 +145,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Dietas.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

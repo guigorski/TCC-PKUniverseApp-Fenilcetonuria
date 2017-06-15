@@ -25,10 +25,10 @@
 
         <ProgressBar  x:Name="ProgressBar" Progress="0.0" WidthRequest="300" HeightRequest="20" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-        <Label Text="0000" HorizontalOptions="Center" TextColor="Black" x:Name="xmin" />
+        <Label Text="0000" HorizontalOptions="CenterAndExpand" TextColor="Black" x:Name="xmin" />
         <Label Text="0000" HorizontalOptions="Center" TextColor="Black" x:Name="xmax" />
         
-        <Button x:Name="Del" Clicked="Del_Clicked" Text="Deletar" />
+        <Button x:Name="Del" Clicked="Del_Clicked" Text="Deletar Item" />
 
     </StackLayout>
 </ContentPage>

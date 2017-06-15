@@ -4,22 +4,16 @@
              x:Class="App3.AtualizarDados"
              Padding="40"
              Title="Atualizar Dados">
-    <StackLayout>
-
+    <StackLayout  VerticalOptions="CenterAndExpand">
+        <Label Text="Nome: " />
         <Entry  Text="{Binding Nome}" Keyboard="Text" Placeholder="Nome" x:Name="xNome"/>
-        <Entry  Placeholder="Peso" x:Name="xPeso"/>
-        <Entry  Placeholder="Idade" x:Name="xData"/>
+            <Label Text="Peso: " />
+            <Entry  Placeholder="Peso" x:Name="xPeso"/>
+                <Label Text="Idade: "/>
+                <Entry  Placeholder="Idade" x:Name="xData"/>
         <Button BorderRadius="8" Text="Enviar" x:Name="enviar" Clicked="enviar_Clicked" BackgroundColor="#127ac7" TextColor="White"/>
 
-        <ListView x:Name="listView"    
-              SeparatorColor="#127ac7"
-               >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Nome}" TextColor="Black"  Detail="{Binding Peso}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        
 
 
     </StackLayout>
